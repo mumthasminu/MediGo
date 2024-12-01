@@ -1,0 +1,58 @@
+{
+    "doctors": [
+        {
+            "id": 1,
+            "name": "Dr. Sarah Ahmed",
+            "specialty": "General Practitioner",
+            "contact": "123-456-7890",
+            "email": "sarah.ahmed@medigo.com",
+            "availability": [
+                "Monday",
+                "Wednesday",
+                "Friday"
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Dr. Omar Ali",
+            "specialty": "Cardiologist",
+            "contact": "987-654-3210",
+            "email": "omar.ali@medigo.com",
+            "availability": [
+                "Tuesday",
+                "Thursday"
+            ]
+        }
+    ],
+    "health_packages": [
+        {
+            "id": 1,
+            "name": "Basic Health Checkup",
+            "price": 50.0,
+            "details": "Includes blood pressure, cholesterol, and basic blood tests."
+        },
+        {
+            "id": 2,
+            "name": "Comprehensive Wellness Package",
+            "price": 150.0,
+            "details": "Includes full body checkup, heart health tests, and general wellness assessment."
+        }
+    ],
+    "service_categories": [
+        {
+            "id": 1,
+            "name": "Doctor Consultation",
+            "description": "Consult with specialized doctors for medical advice and treatment."
+        },
+        {
+            "id": 2,
+            "name": "Diagnostics",
+            "description": "Laboratory and diagnostic services to check for medical conditions."
+        },
+        {
+            "id": 3,
+            "name": "Health Packages",
+            "description": "Bundled services that offer comprehensive health assessments."
+        }
+    ]
+}
