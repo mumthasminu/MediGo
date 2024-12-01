@@ -22,22 +22,18 @@ import java.io.InputStream
 
 class MenuFragments : Fragment() {
     private lateinit var binding: FragmentDetailsBinding
-    private lateinit var data:Data
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        // Load JSON data
-         data = parseJsonToData(requireContext(), "medigo_dataset.json")    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentDetailsBinding.inflate(inflater, container, false)
+        val data = parseJsonToData(requireContext(), "medigo_dataset.json")
         val serviceCategory = arguments?.getSerializable("SERVICE_CATEGORY") as? ServiceCategory
         serviceCategory?.let {
             when (it.id) {
-                1 -> populateDoctorDetails()
-                2 -> populateDiagnosticsDetails()
-                3 -> populateHealthPackageDetails()
+                1 -> populateDoctorDetails(data)
+                2 -> populateDiagnosticsDetails(data)
+                3 -> populateHealthPackageDetails(data)
                 else -> showError()
             }
         }
@@ -53,7 +49,7 @@ class MenuFragments : Fragment() {
         return inputStream.bufferedReader().use { it.readText() }
     }
 
-    private fun populateDoctorDetails() {
+    private fun populateDoctorDetails(data:Data) {
         binding.layoutDoctorDetails.visibility = View.VISIBLE
         binding.layoutDiagnosticsDetails.visibility = View.GONE
         binding.layoutHealthPackagesDetails.visibility = View.GONE
@@ -66,7 +62,7 @@ class MenuFragments : Fragment() {
         binding.doctorDetailsText.text = doctorDetails
     }
 
-    private fun populateDiagnosticsDetails() {
+    private fun populateDiagnosticsDetails(data: Data) {
         binding.layoutDoctorDetails.visibility = View.GONE
         binding.layoutDiagnosticsDetails.visibility = View.VISIBLE
         binding.layoutHealthPackagesDetails.visibility = View.GONE
@@ -76,7 +72,7 @@ class MenuFragments : Fragment() {
         binding.diagnosticsDetailsText.text = diagnosticsInfo
     }
 
-    private fun populateHealthPackageDetails() {
+    private fun populateHealthPackageDetails(data: Data) {
         binding.layoutDoctorDetails.visibility = View.GONE
         binding.layoutDiagnosticsDetails.visibility = View.GONE
         binding.layoutHealthPackagesDetails.visibility = View.VISIBLE
