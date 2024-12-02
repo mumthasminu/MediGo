@@ -3,20 +3,100 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/app_Icon_background">
+    android:background="@color/white">
 
     <!-- Layout for doctor details -->
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/layoutDoctorDetails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:orientation="vertical"
         android:padding="16dp">
+
+        <!-- CardView with Curved Edges -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/curvedCardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="8dp"
+            android:padding="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:cardBackgroundColor="@color/app_Icon_background">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+
+                <!-- Text -->
+                <TextView
+                    android:id="@+id/titleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Find Your Doctor Now"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="5dp"
+                    android:padding="5dp"
+                    android:layout_margin="8dp"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/imagePlaceholder"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginEnd="8dp" />
+
+                <!-- Image Placeholder -->
+                <ImageView
+                    android:id="@+id/imagePlaceholder"
+                    android:layout_width="80dp"
+                    android:layout_height="120dp"
+                    android:layout_marginStart="8dp"
+                    android:contentDescription="Doctor image"
+                    android:src="@drawable/doc"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/findDoc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/curvedCardView"
+            android:text="Find Your Doctor"
+            android:textStyle="bold"
+            android:layout_margin="5dp"
+            android:textSize="14sp">
+
+        </TextView>
+
+        <!-- Horizontal RecyclerView for Specialists -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/specialistsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp"
+            android:layout_below="@+id/findDoc"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        <!-- Vertical RecyclerView for Available Doctors -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/doctorsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_below="@+id/specialistsRecyclerView"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         <TextView
             android:id="@+id/doctorDetailsText"
@@ -25,7 +105,7 @@
             android:text="Doctor Details"
             android:textSize="16sp"
             android:padding="8dp" />
-    </LinearLayout>
+    </RelativeLayout>
 
     <!-- Layout for diagnostics details -->
     <LinearLayout

@@ -1,22 +1,22 @@
 package com.example.MediGo.view
 
-import DoctorAdapter
-import ServiceAdapter
+import SpecialistAdapter
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.MediGo.R
 import com.example.MediGo.databinding.FragmentDetailsBinding
 import com.example.MediGo.model.Local.Data
 import com.example.MediGo.model.Local.ServiceCategory
+import com.example.MediGo.model.Local.Specialists
 import com.example.MediGo.viewModel.ServiceDetailsViewModel
+import com.example.MediGo.viewModel.SpecialistsViewModel
 import com.google.gson.Gson
 import java.io.InputStream
 
@@ -28,7 +28,6 @@ class MenuFragments : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Load JSON data (consider moving this to a separate class for data loading)
         data = parseJsonToData(requireContext(), "medigo_dataset.json")
     }
 
@@ -74,12 +73,19 @@ class MenuFragments : Fragment() {
         binding.layoutDiagnosticsDetails.visibility = View.GONE
         binding.layoutHealthPackagesDetails.visibility = View.GONE
 
-        // Populate doctor details (for simplicity, showing all doctors here)
+        binding.specialistsRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        val specialistAdapter = SpecialistAdapter(data.specialists) { specialists ->
+            onServiceCategoryClick(specialists)
+
+        }
+        binding.specialistsRecyclerView.adapter=specialistAdapter
+
+
         val doctors = data.doctors
         val doctorDetails = doctors.joinToString("\n") { doctor ->
             "Name: ${doctor.name}\nSpecialty: ${doctor.specialty}\nContact: ${doctor.contact}\n\n"
         }
-        binding.doctorDetailsText.text = doctorDetails
+       // binding.doctorDetailsText.text = doctorDetails
     }
 
     private fun populateDiagnosticsDetails() {
@@ -107,5 +113,13 @@ class MenuFragments : Fragment() {
 
     private fun showError() {
         binding.errorText.visibility = View.VISIBLE
+    }
+
+    private fun onServiceCategoryClick(specialists: Specialists) {
+
+        val viewModel = ViewModelProvider(requireActivity())[SpecialistsViewModel::class.java]
+        viewModel.setServiceCategory(specialists)
+
+        findNavController().navigate(R.id.action_homeFragment_to_serviceDetailsFragment)
     }
 }

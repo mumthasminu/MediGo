@@ -6,11 +6,8 @@
             "specialty": "General Practitioner",
             "contact": "123-456-7890",
             "email": "sarah.ahmed@medigo.com",
-            "availability": [
-                "Monday",
-                "Wednesday",
-                "Friday"
-            ]
+            "availability": ["Monday", "Wednesday", "Friday"],
+            "consultation_fee": 30.0
         },
         {
             "id": 2,
@@ -18,10 +15,67 @@
             "specialty": "Cardiologist",
             "contact": "987-654-3210",
             "email": "omar.ali@medigo.com",
-            "availability": [
-                "Tuesday",
-                "Thursday"
-            ]
+            "availability": ["Tuesday", "Thursday"],
+            "consultation_fee": 50.0
+        },
+        {
+            "id": 3,
+            "name": "Dr. Ayesha Khan",
+            "specialty": "Oncologist",
+            "contact": "555-234-5678",
+            "email": "ayesha.khan@medigo.com",
+            "availability": ["Monday", "Thursday"],
+            "consultation_fee": 70.0
+        },
+        {
+            "id": 4,
+            "name": "Dr. Imran Siddiqui",
+            "specialty": "Dermatologist",
+            "contact": "444-123-4567",
+            "email": "imran.siddiqui@medigo.com",
+            "availability": ["Wednesday", "Friday"],
+            "consultation_fee": 40.0
+        },
+        {
+            "id": 5,
+            "name": "Dr. Anika Patel",
+            "specialty": "Pediatrician",
+            "contact": "333-654-9870",
+            "email": "anika.patel@medigo.com",
+            "availability": ["Tuesday", "Saturday"],
+            "consultation_fee": 35.0
+        }
+    ],
+    "specialists": [
+        {
+            "id": 1,
+            "name": "General Practitioner",
+            "description": "Handles general health issues and primary care.",
+            "image_url": "https://img.freepik.com/free-photo/portrait-smiling-young-doctors-standing-together-portrait-medical-staff-inside-modern-hospital-smiling-camera_657921-885.jpg?t=st=1733132242~exp=1733135842~hmac=6382b2e3ad789cddb30c0975c433aad8488b4c274ea963a53580d8ebd41561da&w=740"
+        },
+        {
+            "id": 2,
+            "name": "Cardiology",
+            "description": "Specialized care for heart-related issues.",
+            "image_url": "https://img.freepik.com/free-photo/closeup-heart-stethoscope-cardiovascular-checkup-concept_53876-65587.jpg?t=st=1733132201~exp=1733135801~hmac=4cc310663c46b06f8fa5c5fccab0938c01a426dbd1a309b0b5bed776abed3ce5&w=740"
+        },
+        {
+            "id": 3,
+            "name": "Oncology",
+            "description": "Cancer care and treatment.",
+            "image_url": "https://img.freepik.com/free-photo/middle-aged-woman-with-skin-cancer-talking-with-her-doctor_23-2148988517.jpg?t=st=1733132157~exp=1733135757~hmac=e3857e5ce86ba3b60383be5605887a8967e1be51308796a48f67f51d625e58ec&w=740"
+        },
+        {
+            "id": 4,
+            "name": "Dermatology",
+            "description": "Skin health and related treatments.",
+            "image_url": "https://img.freepik.com/free-photo/female-doctor-diagnosing-melanoma-body-female-patient_23-2149365863.jpg?t=st=1733132045~exp=1733135645~hmac=2b04bb93a4ea65d43a3860d9980f6ab58220810ae4a9577cf9abcea36d85fcc2&w=740"
+        },
+        {
+            "id": 5,
+            "name": "Pediatrics",
+            "description": "Healthcare for infants, children, and adolescents.",
+            "image_url": "https://img.freepik.com/free-photo/close-up-examination-with-stethoscope_23-2148231365.jpg?t=st=1733131902~exp=1733135502~hmac=dc3018cb44c7ce17ae55f261b8023079285b79957c3d34dcc0ef01fe68900b1e&w=740"
         }
     ],
     "health_packages": [
@@ -36,6 +90,18 @@
             "name": "Comprehensive Wellness Package",
             "price": 150.0,
             "details": "Includes full body checkup, heart health tests, and general wellness assessment."
+        },
+        {
+            "id": 3,
+            "name": "Cardiac Health Package",
+            "price": 200.0,
+            "details": "Comprehensive cardiac health assessment including ECG and stress tests."
+        },
+        {
+            "id": 4,
+            "name": "Dermatology Package",
+            "price": 120.0,
+            "details": "Skin analysis, allergy tests, and basic treatments."
         }
     ],
     "service_categories": [
