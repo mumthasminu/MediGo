@@ -1,4 +1,5 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -9,17 +10,19 @@
         android:id="@+id/layoutDoctorDetails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:orientation="horizontal">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
         <TextView
             android:id="@+id/doctorDetailsText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Doctor Details"
-            android:visibility="gone"
             android:textSize="16sp"
             android:padding="8dp" />
     </LinearLayout>
@@ -31,16 +34,17 @@
         android:layout_height="wrap_content"
         android:visibility="gone"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:padding="16dp">
+
         <TextView
             android:id="@+id/diagnosticsDetailsText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Doctor Details"
-            android:visibility="gone"
+            android:text="Diagnostics Details"
             android:textSize="16sp"
             android:padding="8dp" />
     </LinearLayout>
@@ -52,19 +56,22 @@
         android:layout_height="wrap_content"
         android:visibility="gone"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:padding="16dp">
+
         <TextView
             android:id="@+id/healthPackagesDetailsText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Diagnostics Details"
-            android:visibility="gone"
+            android:text="Health Package Details"
             android:textSize="16sp"
             android:padding="8dp" />
     </LinearLayout>
+
+    <!-- Error Text -->
     <TextView
         android:id="@+id/errorText"
         android:layout_width="match_parent"

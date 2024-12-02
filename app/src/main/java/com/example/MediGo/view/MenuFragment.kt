@@ -1,6 +1,5 @@
 package com.example.MediGo.view
 
-import DoctorAdapter
 import ServiceAdapter
 import android.content.Context
 import android.os.Bundle
@@ -19,6 +18,7 @@ import com.example.MediGo.databinding.FragmentLoginBinding
 import com.example.MediGo.model.Local.Data
 import com.example.MediGo.model.Local.ServiceCategory
 import com.example.MediGo.model.Local.User
+import com.example.MediGo.viewModel.ServiceDetailsViewModel
 import com.example.MediGo.viewModel.UserViewModel
 import com.google.gson.Gson
 import java.io.InputStream
@@ -61,8 +61,11 @@ class MenuFragment : Fragment() {
         return inputStream.bufferedReader().use { it.readText() }
     }
     private fun onServiceCategoryClick(serviceCategory: ServiceCategory) {
-                // Navigate to a fragment or show the doctors list
-                findNavController().navigate(R.id.action_homeFragment_to_serviceDetailsFragment)
 
+        val viewModel = ViewModelProvider(requireActivity()).get(ServiceDetailsViewModel::class.java)
+        viewModel.setServiceCategory(serviceCategory)
+
+        findNavController().navigate(R.id.action_homeFragment_to_serviceDetailsFragment)
     }
+
 }

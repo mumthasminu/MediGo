@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.MediGo.R
 import com.example.MediGo.databinding.FragmentDetailsBinding
-import com.example.MediGo.model.Local.ServiceCategory
 
 class DoctorAppointmentFragment : Fragment() {
 

@@ -10,35 +10,55 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.MediGo.R
 import com.example.MediGo.databinding.FragmentDetailsBinding
-
 import com.example.MediGo.model.Local.Data
 import com.example.MediGo.model.Local.ServiceCategory
-
+import com.example.MediGo.viewModel.ServiceDetailsViewModel
 import com.google.gson.Gson
 import java.io.InputStream
 
 class MenuFragments : Fragment() {
+
     private lateinit var binding: FragmentDetailsBinding
+    private lateinit var viewModel: ServiceDetailsViewModel
+    private lateinit var data: Data
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // Load JSON data (consider moving this to a separate class for data loading)
+        data = parseJsonToData(requireContext(), "medigo_dataset.json")
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentDetailsBinding.inflate(inflater, container, false)
-        val data = parseJsonToData(requireContext(), "medigo_dataset.json")
-        val serviceCategory = arguments?.getSerializable("SERVICE_CATEGORY") as? ServiceCategory
-        serviceCategory?.let {
-            when (it.id) {
-                1 -> populateDoctorDetails(data)
-                2 -> populateDiagnosticsDetails(data)
-                3 -> populateHealthPackageDetails(data)
-                else -> showError()
-            }
+        viewModel = ViewModelProvider(requireActivity()).get(ServiceDetailsViewModel::class.java)
+
+        viewModel.serviceCategory.observe(viewLifecycleOwner) { category ->
+            updateUiBasedOnCategory(category)
         }
+
         return binding.root
     }
+
+    private fun updateUiBasedOnCategory(category: ServiceCategory?) {
+        if (category != null) {
+            when (category.id) {
+                1 -> populateDoctorDetails()
+                2 -> populateDiagnosticsDetails()
+                3 -> populateHealthPackageDetails()
+                else -> showError()
+            }
+        } else {
+            // Handle the case where category is null (optional)
+        }
+    }
+
     private fun parseJsonToData(context: Context, fileName: String): Data {
         val jsonString = readJsonFromAssets(context, fileName)
         return Gson().fromJson(jsonString, Data::class.java)
@@ -49,7 +69,7 @@ class MenuFragments : Fragment() {
         return inputStream.bufferedReader().use { it.readText() }
     }
 
-    private fun populateDoctorDetails(data:Data) {
+    private fun populateDoctorDetails() {
         binding.layoutDoctorDetails.visibility = View.VISIBLE
         binding.layoutDiagnosticsDetails.visibility = View.GONE
         binding.layoutHealthPackagesDetails.visibility = View.GONE
@@ -62,7 +82,7 @@ class MenuFragments : Fragment() {
         binding.doctorDetailsText.text = doctorDetails
     }
 
-    private fun populateDiagnosticsDetails(data: Data) {
+    private fun populateDiagnosticsDetails() {
         binding.layoutDoctorDetails.visibility = View.GONE
         binding.layoutDiagnosticsDetails.visibility = View.VISIBLE
         binding.layoutHealthPackagesDetails.visibility = View.GONE
@@ -72,7 +92,7 @@ class MenuFragments : Fragment() {
         binding.diagnosticsDetailsText.text = diagnosticsInfo
     }
 
-    private fun populateHealthPackageDetails(data: Data) {
+    private fun populateHealthPackageDetails() {
         binding.layoutDoctorDetails.visibility = View.GONE
         binding.layoutDiagnosticsDetails.visibility = View.GONE
         binding.layoutHealthPackagesDetails.visibility = View.VISIBLE
