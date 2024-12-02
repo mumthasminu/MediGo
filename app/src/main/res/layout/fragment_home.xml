@@ -1,74 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    android:background="@color/app_Icon_background">
-
-    <!-- Profile Icon -->
-    <ImageView
-        android:id="@+id/profileIcon"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:src="@mipmap/app_icon_round"
-    android:contentDescription="Profile Icon"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
-
-    <!-- Username Text -->
-    <TextView
-        android:id="@+id/username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Username"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/profileIcon"
-        app:layout_constraintTop_toTopOf="@+id/profileIcon"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp" />
-
-    <!-- Search Bar -->
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/searchBar"
+    android:layout_margin="16dp"
+    app:cardCornerRadius="16dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardElevation="8dp">
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/search_view_background"
-        app:layout_constraintTop_toBottomOf="@+id/profileIcon"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
-        android:queryHint="Search..." />
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/profileIcon"
+            android:layout_width="48dp"
+            android:layout_height="24dp"
+            android:src="@mipmap/app_icon_round"
+            android:contentDescription="Profile Icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Username"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/profileIcon"
+            app:layout_constraintTop_toTopOf="@+id/profileIcon"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp" />
+
+        <ImageView
+            android:id="@+id/searchIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_search"
+            app:layout_constraintEnd_toStartOf="@+id/notificationIcon"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginEnd="8dp" />
+
+        <ImageView
+            android:id="@+id/notificationIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_notifications"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-    <TextView
-        android:id="@+id/service"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Services"
-        android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@+id/searchBar"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp" />
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/serviceRecycler"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@+id/service"
-       />
-    <TextView
-        android:id="@+id/appointment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Upcoming session"
-        android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@+id/serviceRecycler"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp" />
+        <androidx.cardview.widget.CardView
+            android:id="@+id/doctorCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="8dp"
+            android:padding="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/profileIcon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+          app:cardBackgroundColor="@color/app_Icon_background">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+
+                <!-- Text -->
+                <TextView
+                    android:id="@+id/titleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Looking for a doctor?"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="5dp"
+                    android:padding="5dp"
+                    android:layout_margin="8dp"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/imagePlaceholder"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/searchButton"
+                    android:layout_marginEnd="8dp" />
+
+                <!-- Button -->
+                <Button
+                    android:id="@+id/searchButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Search"
+                    android:textColor="@android:color/black"
+                    android:backgroundTint="@android:color/white"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="16dp"
+                    android:layout_margin="16dp"
+                    android:elevation="4dp"
+                    app:cornerRadius="12dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/titleText"
+                    app:layout_constraintBottom_toBottomOf="parent" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <!-- Image Placeholder -->
+                <ImageView
+                    android:id="@+id/imagePlaceholder"
+                    android:layout_width="80dp"
+                    android:layout_height="120dp"
+                    android:layout_marginStart="8dp"
+                    android:contentDescription="Doctor image"
+                    android:src="@drawable/doc"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <TextView
+            android:id="@+id/service"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Services"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@+id/doctorCard"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/serviceRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@+id/service" />
+
+        <TextView
+            android:id="@+id/appointment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upcoming session"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@+id/serviceRecycler"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
